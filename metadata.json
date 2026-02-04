@@ -1,0 +1,5 @@
+{
+  "name": "ZenFlow - AI Yoga Personalizer",
+  "description": "An intelligent yoga sequence generator that creates custom flows based on your physical needs and emotional state using Gemini AI.",
+  "requestFramePermissions": []
+}
