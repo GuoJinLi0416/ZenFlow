@@ -1,29 +1,125 @@
 
 import { YogaPose } from '../types';
 
-// Using high-quality placeholder images to simulate the look of dynamic demonstrations
-const getYogaImg = (seed: string) => `https://loremflickr.com/600/400/yoga,asana,${seed}?random=${seed}`;
+const getYogaImg = (poseKeyword: string, seed: string) => 
+  `https://loremflickr.com/800/600/yoga,asana,stretching,${poseKeyword.replace(/\s+/g, '').toLowerCase()}?random=${seed}`;
 
 export const POSE_LIBRARY: YogaPose[] = [
-  // Standing
-  { id: 'tadasana', name: 'Mountain Pose (Tadasana)', category: 'Standing', duration: '1 min', description: 'Standing tall with feet together.', benefits: 'Improves posture and balance.', breathingGuidance: 'Deep, steady inhales.', imageUrl: getYogaImg('mountain') },
-  { id: 'vrikshasana', name: 'Tree Pose (Vrikshasana)', category: 'Balance', duration: '30s each side', description: 'Balance on one leg, other foot on inner thigh.', benefits: 'Strengthens legs and focus.', breathingGuidance: 'Focus on a single point.', imageUrl: getYogaImg('tree') },
-  { id: 'virabhadrasana1', name: 'Warrior I', category: 'Standing', duration: '45s', description: 'Deep lunge with arms raised high.', benefits: 'Builds stamina and core strength.', breathingGuidance: 'Inhale as you reach up.', imageUrl: getYogaImg('warrior1') },
-  { id: 'virabhadrasana2', name: 'Warrior II', category: 'Standing', duration: '45s', description: 'Lunge with arms spread wide.', benefits: 'Opens hips and chest.', breathingGuidance: 'Exhale as you sink deeper.', imageUrl: getYogaImg('warrior2') },
-  { id: 'trikonasana', name: 'Triangle Pose', category: 'Standing', duration: '1 min', description: 'Extended legs with one hand reaching for the floor.', benefits: 'Stretches spine and legs.', breathingGuidance: 'Breathe into the side body.', imageUrl: getYogaImg('triangle') },
-  
-  // Kneeling
-  { id: 'marjaryasana', name: 'Cat-Cow Stretch', category: 'Kneeling', duration: '2 mins', description: 'Flowing between arched and rounded spine.', benefits: 'Warms up the spine.', breathingGuidance: 'Inhale to arch, exhale to round.', imageUrl: getYogaImg('catcow') },
-  { id: 'balasana', name: 'Child’s Pose', category: 'Kneeling', duration: '2 mins', description: 'Resting with forehead on mat.', benefits: 'Calms the nervous system.', breathingGuidance: 'Slow, deep belly breaths.', imageUrl: getYogaImg('child') },
-  { id: 'adho_mukha', name: 'Downward Dog', category: 'Inversion', duration: '1 min', description: 'Inverted V-shape with hands and feet on floor.', benefits: 'Full body stretch.', breathingGuidance: 'Push through the palms on exhale.', imageUrl: getYogaImg('downdog') },
-  
-  // Seated
-  { id: 'paschimottanasana', name: 'Seated Forward Fold', category: 'Seated', duration: '2 mins', description: 'Folding forward over extended legs.', benefits: 'Stretches the hamstrings.', breathingGuidance: 'Exhale as you fold.', imageUrl: getYogaImg('forwardfold') },
-  { id: 'baddha_konasana', name: 'Butterfly Pose', category: 'Seated', duration: '2 mins', description: 'Feet together, knees dropped to sides.', benefits: 'Opens inner thighs.', breathingGuidance: 'Gently flap the "wings" with breath.', imageUrl: getYogaImg('butterfly') },
-  { id: 'sukhasana', name: 'Easy Pose', category: 'Seated', duration: '5 mins', description: 'Cross-legged sitting for meditation.', benefits: 'Promotes stillness.', breathingGuidance: 'Natural, unforced breath.', imageUrl: getYogaImg('easy') },
+  // --- Neck & Shoulder Focus ---
+  { 
+    id: 'neck-rolls', 
+    name: 'Seated Neck Rolls', 
+    category: 'Seated', 
+    difficulty: 'Beginner',
+    intensity: 2,
+    duration: '2 mins', 
+    description: 'Gently rolling the neck in circular motions while seated comfortably.', 
+    benefits: 'Relieves tension in the cervical spine and upper traps.', 
+    breathingGuidance: 'Inhale as you look up, exhale as the chin drops to chest.', 
+    imageUrl: getYogaImg('neckstretch', 'n1') 
+  },
+  { 
+    id: 'thread-needle', 
+    name: 'Thread the Needle', 
+    category: 'Kneeling', 
+    difficulty: 'Beginner',
+    intensity: 4,
+    duration: '1 min each side', 
+    description: 'From tabletop, slide one arm under the other until the shoulder rests on the mat.', 
+    benefits: 'Deep stretch for the shoulders and upper back.', 
+    breathingGuidance: 'Exhale as you reach through; breathe into the shoulder blade.', 
+    imageUrl: getYogaImg('threadneedle', 'n2') 
+  },
+  { 
+    id: 'puppy-pose', 
+    name: 'Extended Puppy Pose', 
+    category: 'Kneeling', 
+    difficulty: 'Beginner',
+    intensity: 4,
+    duration: '1.5 mins', 
+    description: 'Hips stay over knees as hands walk forward, heart melting toward the earth.', 
+    benefits: 'Stretches the spine and opens the shoulders beautifully.', 
+    breathingGuidance: 'Deep, slow breaths as the chest descends.', 
+    imageUrl: getYogaImg('puppypose', 'n3') 
+  },
 
-  // Supine/Prone
-  { id: 'bhujangasana', name: 'Cobra Pose', category: 'Prone', duration: '30s', description: 'Lifting chest off the floor.', benefits: 'Strengthens the back.', breathingGuidance: 'Inhale as you lift.', imageUrl: getYogaImg('cobra') },
-  { id: 'setu_bandha', name: 'Bridge Pose', category: 'Supine', duration: '1 min', description: 'Lifting hips with feet flat.', benefits: 'Energizes the body.', breathingGuidance: 'Exhale to lower down.', imageUrl: getYogaImg('bridge') },
-  { id: 'shavasana', name: 'Corpse Pose (Shavasana)', category: 'Supine', duration: '5 mins', description: 'Lying flat on the back, total relaxation.', benefits: 'Final integration.', breathingGuidance: 'Let go of all control.', imageUrl: getYogaImg('shavasana') }
+  // --- Standing ---
+  { 
+    id: 'tadasana', 
+    name: 'Mountain Pose', 
+    category: 'Standing', 
+    difficulty: 'Beginner',
+    intensity: 1,
+    duration: '1 min', 
+    description: 'Stand with feet together, grounding through all four corners.', 
+    benefits: 'Improves posture.', 
+    breathingGuidance: 'Inhale to grow tall.', 
+    imageUrl: getYogaImg('tadasana', '1') 
+  },
+  { 
+    id: 'virabhadrasana1', 
+    name: 'Warrior I', 
+    category: 'Standing', 
+    difficulty: 'Intermediate',
+    intensity: 6,
+    duration: '45s', 
+    description: 'A powerful lunge with arms reaching toward the sky.', 
+    benefits: 'Strengthens legs.', 
+    breathingGuidance: 'Expansive inhales.', 
+    imageUrl: getYogaImg('warrior1', '2') 
+  },
+
+  // --- Balance ---
+  { 
+    id: 'bakasana', 
+    name: 'Crow Pose', 
+    category: 'Balance', 
+    difficulty: 'Advanced',
+    intensity: 8,
+    duration: '20s', 
+    description: 'An arm balance where knees rest on the back of the upper arms.', 
+    benefits: 'Builds arm strength.', 
+    breathingGuidance: 'Exhale as you shift weight forward.', 
+    imageUrl: getYogaImg('crowpose', 'b3') 
+  },
+
+  // --- Inversion ---
+  { 
+    id: 'sarvangasana', 
+    name: 'Shoulder Stand', 
+    category: 'Inversion', 
+    difficulty: 'Advanced',
+    intensity: 9,
+    duration: '2 mins', 
+    description: 'Lifting the legs and torso toward the ceiling.', 
+    benefits: 'Calms the mind.', 
+    breathingGuidance: 'Deep slow breathing.', 
+    imageUrl: getYogaImg('shoulderstand', 'i3') 
+  },
+
+  // --- Relaxation ---
+  { 
+    id: 'balasana', 
+    name: 'Child’s Pose', 
+    category: 'Kneeling', 
+    difficulty: 'Beginner',
+    intensity: 1,
+    duration: '2 mins', 
+    description: 'Resting the forehead down, sitting back on heels.', 
+    benefits: 'Calms the mind.', 
+    breathingGuidance: 'Surrender completely.', 
+    imageUrl: getYogaImg('childspose', '10') 
+  },
+  { 
+    id: 'shavasana', 
+    name: 'Corpse Pose', 
+    category: 'Supine', 
+    difficulty: 'Beginner',
+    intensity: 0,
+    duration: '5 mins', 
+    description: 'Complete stillness lying flat on the back.', 
+    benefits: 'Full body integration.', 
+    breathingGuidance: 'Let go.', 
+    imageUrl: getYogaImg('shavasana', '20') 
+  }
 ];
